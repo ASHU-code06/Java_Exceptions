@@ -9,6 +9,7 @@ public class UserRegisteration  {
         userRegisteration.firstname();
         userRegisteration.lastname();
         userRegisteration.isvalidemail();
+        userRegisteration.isvalidphoneneumber();
 
     }
     public  void firstname()throws InvalidUserName  {
@@ -69,6 +70,22 @@ public class UserRegisteration  {
             isvalidemail();
         }
 
+    }
+    public void isvalidphoneneumber () throws InvalidUserName {
+        System.out.println("Enter your phone number");
+        Scanner phone = new Scanner(System.in);
+        String phonenum = phone.nextLine();
+        boolean pattern = phonenum.matches("^[91]{2}[0-9]{10}$");
+        try{
+         if (pattern == true) {
+             System.out.println("valid phone number");
+         } else {
+             throw new InvalidUserName("Exception occurs");
+         }
+        }catch (InvalidUserName a){
+            System.out.println("Please enter a valid phone-number");
+            isvalidphoneneumber();
+        }
     }
 }
 
