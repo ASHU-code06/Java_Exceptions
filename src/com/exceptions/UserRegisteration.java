@@ -8,6 +8,7 @@ public class UserRegisteration  {
         UserRegisteration userRegisteration=new UserRegisteration();
         userRegisteration.firstname();
         userRegisteration.lastname();
+        userRegisteration.isvalidemail();
 
     }
     public  void firstname()throws InvalidUserName  {
@@ -48,6 +49,26 @@ public class UserRegisteration  {
             System.out.println("Please write proper Last name ");
             lastname();
         }
+    }
+    public void isvalidemail(){
+        System.out.println("Enter your email id");
+        Scanner inputemail = new Scanner(System.in);
+        String email = inputemail.nextLine();
+        Pattern patemail = Pattern.compile(("^[A-Za-z0-9+-._]{0,}@[A-Za-z0-9+-._]{0,}[.][com|in]{2,3}$"));
+        Matcher matemail = patemail.matcher(email);
+        boolean d = matemail.matches();
+        try {
+            if (d) {
+                System.out.println(d);
+                System.out.println("email id is valid");
+            } else {
+                throw new InvalidUserName("Exception occurs");
+            }
+        }catch (InvalidUserName a){
+            System.out.println("Enter an valid email id ");
+            isvalidemail();
+        }
+
     }
 }
 
