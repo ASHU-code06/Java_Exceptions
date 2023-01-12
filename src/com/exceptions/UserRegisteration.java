@@ -7,6 +7,7 @@ public class UserRegisteration  {
         System.out.println("Enter your first name with first letter in capital");
         UserRegisteration userRegisteration=new UserRegisteration();
         userRegisteration.firstname();
+        userRegisteration.lastname();
 
     }
     public  void firstname()throws InvalidUserName  {
@@ -28,6 +29,25 @@ public class UserRegisteration  {
             firstname();
         }
 
+    }
+    public  void lastname()throws InvalidUserName  {
+        System.out.println("Enter your last name");
+        Scanner input = new Scanner(System.in);
+        String lname = input.nextLine();
+        try{
+        Pattern pat = Pattern.compile(("^[A-Z]{1}[a-z]{2,}$"));
+        Matcher mat = pat.matcher(lname);
+        boolean c = mat.matches();
+        if (c){
+            System.out.println(c);
+        }else {
+            throw new InvalidUserName("exception occur");
+        }
+        }
+        catch(InvalidUserName O){
+            System.out.println("Please write proper Last name ");
+            lastname();
+        }
     }
 }
 
