@@ -3,7 +3,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.Scanner;
 public class UserRegisteration  {
-    public static void main(String[] args) throws InvalidUserName {
+    public static void main(String[] args) throws InvalidUserInput {
         System.out.println("Enter your first name with first letter in capital");
         UserRegisteration userRegisteration=new UserRegisteration();
         userRegisteration.firstname();
@@ -12,7 +12,7 @@ public class UserRegisteration  {
         userRegisteration.isvalidphoneneumber();
 
     }
-    public  void firstname()throws InvalidUserName  {
+    public  void firstname()throws InvalidUserInput {
         Scanner myinput = new Scanner(System.in);
         String fname = myinput.nextLine();
         try {
@@ -22,9 +22,9 @@ public class UserRegisteration  {
             if(b) {
                 System.out.println(b);
             }else {
-                throw new InvalidUserName("Here an exception has come");
+                throw new InvalidUserInput("Here an exception has come");
             }
-        } catch (InvalidUserName e) {
+        } catch (InvalidUserInput e) {
          /*throw new InvalidUserName("Enter correct input please");
           already throwed exception one time so it is no need to throw exception again*/
             System.out.println("Please write proper first name ");
@@ -32,7 +32,7 @@ public class UserRegisteration  {
         }
 
     }
-    public  void lastname()throws InvalidUserName  {
+    public  void lastname()throws InvalidUserInput {
         System.out.println("Enter your last name");
         Scanner input = new Scanner(System.in);
         String lname = input.nextLine();
@@ -43,10 +43,10 @@ public class UserRegisteration  {
         if (c){
             System.out.println(c);
         }else {
-            throw new InvalidUserName("exception occur");
+            throw new InvalidUserInput("exception occur");
         }
         }
-        catch(InvalidUserName O){
+        catch(InvalidUserInput O){
             System.out.println("Please write proper Last name ");
             lastname();
         }
@@ -63,15 +63,15 @@ public class UserRegisteration  {
                 System.out.println(d);
                 System.out.println("email id is valid");
             } else {
-                throw new InvalidUserName("Exception occurs");
+                throw new InvalidUserInput("Exception occurs");
             }
-        }catch (InvalidUserName a){
+        }catch (InvalidUserInput a){
             System.out.println("Enter an valid email id ");
             isvalidemail();
         }
 
     }
-    public void isvalidphoneneumber () throws InvalidUserName {
+    public void isvalidphoneneumber () throws InvalidUserInput {
         System.out.println("Enter your phone number");
         Scanner phone = new Scanner(System.in);
         String phonenum = phone.nextLine();
@@ -80,12 +80,36 @@ public class UserRegisteration  {
          if (pattern == true) {
              System.out.println("valid phone number");
          } else {
-             throw new InvalidUserName("Exception occurs");
+             throw new InvalidUserInput("Exception occurs");
          }
-        }catch (InvalidUserName a){
+        }catch (InvalidUserInput a){
             System.out.println("Please enter a valid phone-number");
             isvalidphoneneumber();
         }
+    }
+    public static void isvalidpassword() throws InvalidUserInput {
+        System.out.println("Enter password");
+        System.out.println(" Rule 1 : password must have atleast 8 characters");
+        System.out.println("Rule 2:  password must have atleast 1 uppercase character ");
+        System.out.println("Rule 3:  password must have atleast 1 numeric number");
+        System.out.println("Rule4 : password must have exactly 1 Special Character");
+        Scanner myinput = new Scanner(System.in);
+        String pass = myinput.nextLine();
+        Pattern password = Pattern.compile(("^(?=.*[a-z]){1,}(?=.*[A-Z]){1,}(?=.*[0-9]){1,}(?=.*[$@$!%*?&])[A-Za-z0-9$@$!%*?&]{5,}$"));
+        Matcher m = password.matcher(pass);
+        boolean b = m.matches();
+        try {
+            if (b) {
+                System.out.println(b);
+            } else {
+                throw new InvalidUserInput("Exception occurs");
+            }
+        }catch (InvalidUserInput z){
+
+            System.out.println("Please enter a valid password");
+            isvalidpassword();
+        }
+
     }
 }
 
