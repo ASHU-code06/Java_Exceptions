@@ -1,0 +1,15 @@
+.gradle
+.idea
+build
+gradle
+build.gradle
+gradlew
+gradlew.bat
+settings.gradle
+compiler.xml
+gradle.xml
+jarRepository.xml
+misc.xml
+uiDesigner.xml
+vcs.xml
+workspace.xml
